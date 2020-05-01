@@ -64,11 +64,7 @@ function check(e) {
     corrertanser = eval(corrertanser).toFixed();
     switch(true){
       case (time <= 40 && time >= 0):
-      if (corrertanser.toString() === playanswer){
-          scoll += 1;
-      } else{
-        scoll -= 1;
-      }
+        corrertanser.toString() === playanswer ?  scoll += 1: scoll -= 1;
       yourscoll();
       print();
           break;
