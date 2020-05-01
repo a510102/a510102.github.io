@@ -57,46 +57,51 @@ function print() {
 
 function check(e) {
   let playanswer = e.target.value;
-  corrertanser = corrertanser.replace('×','*')
-  corrertanser = corrertanser.replace('÷','/')
+  if(!isNaN(playanswer)){
+    corrertanser = corrertanser.replace('×','*')
+    corrertanser = corrertanser.replace('÷','/')
 
-  corrertanser = eval(corrertanser).toFixed();
-  switch(true){
-    case (time <= 40 && time >= 0):
-    if (corrertanser.toString() === playanswer){
-        scoll += 1;
-    } else{
-      scoll -= 1;
-    }
-    yourscoll();
-    print();
-        break;
-    case time === 60 && (corrertanser.toString() !== playanswer):
-      scoll -= 1;
-      str=`<div class='final-title'>
-            <p class='title'>60 SECONDS CHALLENGE</p>
-            <p class="score-title">YOUR FINAL SCORE</p>
-          </div>
-          <p>${scoll}</p>
-          `
-      banner.innerHTML = str;
-      str = `<button onclick="location.reload()">TRY AGAIN!</button>`  
-      bottom.innerHTML = str;  
-      banner.classList.remove('banner-page-two');    
-      bottom.classList.remove('bottom-page-two');
-      banner.classList.add('banner-page-three');
-
-          break;    
-    case (time >= 41 && time <= 60):
+    corrertanser = eval(corrertanser).toFixed();
+    switch(true){
+      case (time <= 40 && time >= 0):
       if (corrertanser.toString() === playanswer){
-         scoll += 5;
+          scoll += 1;
       } else{
-       scoll -= 1;
+        scoll -= 1;
       }
       yourscoll();
       print();
-      break;
+          break;
+      case time === 60 && (corrertanser.toString() !== playanswer):
+        scoll -= 1;
+        str=`<div class='final-title'>
+              <p class='title'>60 SECONDS CHALLENGE</p>
+              <p class="score-title">YOUR FINAL SCORE</p>
+            </div>
+            <p>${scoll}</p>
+            `
+        banner.innerHTML = str;
+        str = `<button onclick="location.reload()">TRY AGAIN!</button>`  
+        bottom.innerHTML = str;  
+        banner.classList.remove('banner-page-two');    
+        bottom.classList.remove('bottom-page-two');
+        banner.classList.add('banner-page-three');
+
+            break;    
+      case (time >= 41 && time <= 60):
+        if (corrertanser.toString() === playanswer){
+          scoll += 5;
+        } else{
+        scoll -= 1;
+        }
+        yourscoll();
+        print();
+          break;
     }
+  } else{
+    e.target.value = '';
+    alert('請輸入數字')
+  }
 }
 
 function random() {
